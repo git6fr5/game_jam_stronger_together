@@ -42,3 +42,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 4223699661
+    locked: 0
+  - name: Hills
+    uniqueID: 1326277853
+    locked: 0
+  - name: Shadows
+    uniqueID: 943282137
+    locked: 0
+  - name: Mountaineer
+    uniqueID: 509560549
+    locked: 0
+  - name: UI
+    uniqueID: 4125008055
+    locked: 0

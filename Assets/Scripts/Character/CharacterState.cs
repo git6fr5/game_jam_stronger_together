@@ -12,6 +12,9 @@ public class CharacterState : MonoBehaviour
     /*--- Components ---*/
     public Collider2D hitbox;
     public Collider2D hull;
+    public SpriteRenderer highlight;
+    public SpriteRenderer selected;
+
     public SpriteRenderer spriteRenderer;
     public Sprite portrait;
 
@@ -19,6 +22,7 @@ public class CharacterState : MonoBehaviour
     [HideInInspector] public float maxEnergy = 1f;
     [HideInInspector] public float currEnergy = 1f;
 
+    [HideInInspector] public bool isSelected = false;
     [HideInInspector] public bool isDead = false;
 
     /*--- Unity Methods ---*/
@@ -30,6 +34,16 @@ public class CharacterState : MonoBehaviour
     void OnMouseDown()
     {
         Select();
+    }
+
+    void OnMouseOver()
+    {
+        Highlight(true);
+    }
+
+    void OnMouseExit()
+    {
+        Highlight(false);
     }
 
     /*--- Methods ---*/
@@ -55,7 +69,14 @@ public class CharacterState : MonoBehaviour
             cameraFocus.Focus(transform);
         }
 
+        selected.enabled = true;
+
         cameraFocus.isBuffering = true;
         StartCoroutine(cameraFocus.Buffer(cameraFocus.bufferTime));
+    }
+
+    public void Highlight(bool isHover)
+    {
+        highlight.enabled = isHover;
     }
 }

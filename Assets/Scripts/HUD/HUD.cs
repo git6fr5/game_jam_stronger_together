@@ -14,6 +14,9 @@ public class HUD : MonoBehaviour
     public HUDGameOver hudGameOver;
     public HUDPortrait hudPortrait;
 
+    /* --- Internal Variables --- */
+    [HideInInspector] public GameObject currSelection;
+
     /*--- Unity Methods ---*/
     void Start()
     {
@@ -23,12 +26,28 @@ public class HUD : MonoBehaviour
     /* --- Methods ---*/
     public void Inspect(CharacterState characterState)
     {
+        Deselect();
+
         if (characterState)
         {
             print("Inspecting Character");
+            currSelection = characterState.gameObject;
             hudPortrait.portraitImage.sprite = characterState.portrait;
             return;
         }
         hudPortrait.portraitImage.sprite = hudPortrait.defaultSprite;
+    }
+
+    public void Deselect()
+    {
+        if (currSelection)
+        {
+            if (currSelection.GetComponent<CharacterState>())
+            {
+                CharacterState currSelectionState = currSelection.GetComponent<CharacterState>();
+                currSelectionState.selected.enabled = false;
+                currSelectionState.Highlight(false);
+            }
+        }
     }
 }
