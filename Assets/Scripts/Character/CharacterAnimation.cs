@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// to avoid using the unity animator which is clunky af
 public class CharacterAnimation : MonoBehaviour
 {
     /* --- Debug --- */
@@ -49,7 +50,7 @@ public class CharacterAnimation : MonoBehaviour
 
     void Update()
     {
-        // If not playing an 'unoverridable' animation
+        // if not playing an 'unoverridable' animation
         // check to see if the selected animation has changed
         if (!overriding)
         {
@@ -67,14 +68,14 @@ public class CharacterAnimation : MonoBehaviour
         }
     }
 
-    // Runs through the possible animations that can be played and selects the highest priority one
+    // runs through the possible animations that can be played and selects the highest priority one
     public void SetAnimation()
     {
         bool animated = false;
 
         /* --- High Priority --- */
-        // If one of these are selected, then we must run through the whole animation (hence, overriding)
-
+        
+        // if one of these are selected, then we must run through the whole animation (hence, overriding)
         if (death && deathAnim)
         {
             animator.Play(deathAnim.name);
@@ -106,6 +107,7 @@ public class CharacterAnimation : MonoBehaviour
         return;
     }
 
+    // releases the override once the animation duration is up
     public void OverrideAnimationForDuration(float elapsedDuration, float duration)
     {
         elapsedDuration = elapsedDuration + Time.fixedDeltaTime;
@@ -115,7 +117,7 @@ public class CharacterAnimation : MonoBehaviour
         }
     }
 
-    // Runs through the possible sounds that can be played and selects the highest priority one
+    // runs through the possible sounds that can be played and selects the highest priority one
     public void PlaySound()
     {
         if (death && deathAudio)

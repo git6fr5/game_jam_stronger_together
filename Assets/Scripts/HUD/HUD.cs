@@ -23,6 +23,12 @@ public class HUD : MonoBehaviour
     /* --- Methods ---*/
     public void Inspect(CharacterState characterState)
     {
-        
+        if (characterState)
+        {
+            print("Inspecting Character");
+            hudPortrait.portraitImage.sprite = characterState.portrait;
+            return;
+        }
+        hudPortrait.portraitImage.sprite = hudPortrait.defaultSprite;
     }
 }

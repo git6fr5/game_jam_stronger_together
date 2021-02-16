@@ -11,12 +11,19 @@ public class HUDPortrait : MonoBehaviour
 
     /* --- Components --- */
     public Image portraitImage;
+    public Sprite defaultSprite;
     public Text characterName;
     public Image borderImage;
+
+    /* --- Internal Variables --- */
 
     /*--- Unity Methods ---*/
     void Start()
     {
         if (DEBUG_init) { print(DebugTag + "Activated"); }
+        portraitImage.sprite = defaultSprite;
     }
+
+    /*--- Methods ---*/
+
 }
