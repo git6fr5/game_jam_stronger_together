@@ -18,6 +18,10 @@ public class CharacterState : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Sprite portrait;
 
+    public CharacterMovement characterMovement;
+
+    public bool isControllable;
+
     /* --- Internal Variables --- */
     [HideInInspector] public float maxEnergy = 1f;
     [HideInInspector] public float currEnergy = 1f;
@@ -29,6 +33,11 @@ public class CharacterState : MonoBehaviour
     void Start()
     {
         if (DEBUG_init) { print(DebugTag + "Activated for " + gameObject.name); }
+    }
+
+    void Update()
+    {
+        MoveFlag();
     }
 
     public virtual void OnMouseDown()
@@ -73,6 +82,8 @@ public class CharacterState : MonoBehaviour
 
         cameraFocus.isBuffering = true;
         StartCoroutine(cameraFocus.Buffer(cameraFocus.bufferTime));
+
+        isSelected = true;
     }
 
     public virtual void Deselect()
@@ -82,6 +93,8 @@ public class CharacterState : MonoBehaviour
 
         CameraFocus cameraFocus = GameObject.FindGameObjectsWithTag("MainCamera")[0].GetComponent<CameraFocus>();
         cameraFocus.isBuffering = false;
+
+        isSelected = false;
     }
 
     public void Highlight(bool isHover)
@@ -97,5 +110,15 @@ public class CharacterState : MonoBehaviour
     public virtual void ShowHud(HUD hud)
     {
         return;
+    }
+
+    void MoveFlag()
+    {
+        // Get the input from the player
+        if (isControllable && isSelected)
+        {
+            characterMovement.horizontalMove = Input.GetAxisRaw("Horizontal");
+            characterMovement.verticalMove = Input.GetAxisRaw("Vertical");
+        }
     }
 }
