@@ -13,6 +13,7 @@ public class HUD : MonoBehaviour
     public HUDMinimap hudMinimap;
     public HUDGameOver hudGameOver;
     public HUDPortrait hudPortrait;
+    public CharacterState[] mountaineers;
 
     /* --- Internal Variables --- */
     [HideInInspector] public GameObject currSelection;
@@ -21,6 +22,22 @@ public class HUD : MonoBehaviour
     void Start()
     {
         if (DEBUG_init) { print(DebugTag + "Activated"); }
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            int index = 0;
+            for (int i = 0; i < mountaineers.Length; i++)
+            {
+                if (mountaineers[i].gameObject == currSelection)
+                {
+                    index = (i + 1) % mountaineers.Length;
+                }
+            }
+            mountaineers[index].Select();
+        }
     }
 
     /* --- Methods ---*/
