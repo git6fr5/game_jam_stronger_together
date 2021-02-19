@@ -24567,6 +24567,9 @@ MonoBehaviour:
   hudMinimap: {fileID: 0}
   hudGameOver: {fileID: 0}
   hudPortrait: {fileID: 389911180}
+  mountaineers:
+  - {fileID: 1636976538}
+  - {fileID: 1789255996}
   description: {fileID: 1153723427}
   actionButton1: {fileID: 813231452}
   currSelection: {fileID: 0}
@@ -25680,6 +25683,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9631e84e738d24b4c9cb025baebf6d8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitbox: {fileID: 0}
+  hull: {fileID: 0}
+  highlight: {fileID: 0}
+  selected: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  portrait: {fileID: 0}
+  maxEnergy: 1
+  currEnergy: 1
+  isSelected: 0
+  isDead: 0
 --- !u!212 &1636976535
 SpriteRenderer:
   m_ObjectHideFlags: 0
