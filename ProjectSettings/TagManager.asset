@@ -55,9 +55,6 @@ TagManager:
   - name: Shadows
     uniqueID: 943282137
     locked: 0
-  - name: Objects
-    uniqueID: 748920069
-    locked: 0
   - name: Mountaineer
     uniqueID: 509560549
     locked: 0
