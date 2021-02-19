@@ -4,9 +4,9 @@ Due Date : Sunday 21st February 2021
 
 ## Team 
 
-Visionary : Taha Akbarally 
-TechLead : Asil Main
-Chief Distraction Officer : Elston D'Souza 
+- Visionary : Taha Akbarally 
+- TechLead : Asil Main
+- Chief Distraction Officer : Elston D'Souza 
 
 ## Planning Documentation 
 
@@ -25,7 +25,7 @@ Chief Distraction Officer : Elston D'Souza
 
 - [Main Theme](https://open.spotify.com/track/2gsXmYX7AVEPZHiClEsaQw?si=uVdkl8T7RR6vaPo5QehW6A)
 - [Intro Section](https://open.spotify.com/track/2Vy3oYEpGJfy5WppbAPHgH?si=Zl__f0X7RYyd-zvrsPZFJg)
-- [Intense Music] (https://www.youtube.com/watch?v=5At9WgxCJJg)
+- [Intense Music](https://www.youtube.com/watch?v=5At9WgxCJJg)
 
 
 
