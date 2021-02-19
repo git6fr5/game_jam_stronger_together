@@ -28,20 +28,20 @@ public class CameraFocus : MonoBehaviour
     }
 
 
-   /* void LateUpdate()
+    void LateUpdate()
     {
         // if nothing was selected, then move camera to the position
         if (Input.GetMouseButtonDown(0) && !isBuffering)
         {
             //print("Empty Focus");
-            //emptyFocus.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //Focus(emptyFocus);
+            emptyFocus.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Focus(emptyFocus);
 
-            HUD hud = GameObject.FindGameObjectsWithTag("HUD")[0].GetComponent<HUD>();
-            hud.Inspect(null);
+            //HUD hud = GameObject.FindGameObjectsWithTag("HUD")[0].GetComponent<HUD>();
+            //hud.Inspect(null);
         }
 
-        if (!isBuffering)
+        /*if (!isBuffering)
         {
             float xAxisValue = Input.GetAxis("Horizontal") * Speed;
             float yAxisValue = Input.GetAxis("Vertical") * Speed;
@@ -49,10 +49,9 @@ public class CameraFocus : MonoBehaviour
 
             transform.position = newPos;
             emptyFocus.position = newPos;
-        }
+        }*/
       
     }
-        */
 
     /* --- Methods ---*/
     public void Focus(Transform _focus)

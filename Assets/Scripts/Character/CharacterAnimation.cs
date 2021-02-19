@@ -103,7 +103,7 @@ public class CharacterAnimation : MonoBehaviour
         if (animated) { return; }
 
         /* --- Low Priority --- */
-        animator.Play(idleAnim.name);
+        //animator.Play(idleAnim.name);
         return;
     }
 
