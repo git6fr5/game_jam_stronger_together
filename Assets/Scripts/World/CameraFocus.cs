@@ -18,6 +18,7 @@ public class CameraFocus : MonoBehaviour
     /*--- Internal Variables ---*/
     [HideInInspector] public float bufferTime = 0.1f;
     [HideInInspector] public bool isBuffering = false;
+    private const float Speed = 0.0075f;
 
 
     /*--- Unity Methods ---*/
@@ -26,23 +27,37 @@ public class CameraFocus : MonoBehaviour
         if (DEBUG_init) { print(DebugTag + "Activated"); }
     }
 
-    void LateUpdate()
+
+   /* void LateUpdate()
     {
         // if nothing was selected, then move camera to the position
         if (Input.GetMouseButtonDown(0) && !isBuffering)
         {
-            print("Empty Focus");
-            emptyFocus.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Focus(emptyFocus);
+            //print("Empty Focus");
+            //emptyFocus.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //Focus(emptyFocus);
 
             HUD hud = GameObject.FindGameObjectsWithTag("HUD")[0].GetComponent<HUD>();
             hud.Inspect(null);
         }
+
+        if (!isBuffering)
+        {
+            float xAxisValue = Input.GetAxis("Horizontal") * Speed;
+            float yAxisValue = Input.GetAxis("Vertical") * Speed;
+            Vector3 newPos = new Vector3(transform.position.x + xAxisValue, transform.position.y + yAxisValue, -10);
+
+            transform.position = newPos;
+            emptyFocus.position = newPos;
+        }
+      
     }
+        */
 
     /* --- Methods ---*/
     public void Focus(Transform _focus)
     {
+        virtualCamera.enabled = true;
         virtualCamera.m_Follow = _focus;
         isBuffering = true;
         StartCoroutine(Buffer(bufferTime));
