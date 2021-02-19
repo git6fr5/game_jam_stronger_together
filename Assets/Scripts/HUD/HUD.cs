@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
@@ -15,14 +14,8 @@ public class HUD : MonoBehaviour
     public HUDGameOver hudGameOver;
     public HUDPortrait hudPortrait;
 
-    public Text description;
-
-
-    public Button actionButton1;
-
     /* --- Internal Variables --- */
-    [HideInInspector] public GameObject currSelection = null;
-    [HideInInspector] public bool inAction = false;
+    [HideInInspector] public GameObject currSelection;
 
     /*--- Unity Methods ---*/
     void Start()
@@ -33,7 +26,6 @@ public class HUD : MonoBehaviour
     /* --- Methods ---*/
     public void Inspect(CharacterState characterState)
     {
-
         Deselect();
 
         if (characterState)
@@ -41,7 +33,6 @@ public class HUD : MonoBehaviour
             print("Inspecting Character");
             currSelection = characterState.gameObject;
             hudPortrait.portraitImage.sprite = characterState.portrait;
-            characterState.ShowHud(this);
             return;
         }
         hudPortrait.portraitImage.sprite = hudPortrait.defaultSprite;
@@ -52,27 +43,11 @@ public class HUD : MonoBehaviour
         if (currSelection)
         {
             if (currSelection.GetComponent<CharacterState>())
-            { 
+            {
                 CharacterState currSelectionState = currSelection.GetComponent<CharacterState>();
-                currSelectionState.Deselect();
+                currSelectionState.selected.enabled = false;
+                currSelectionState.Highlight(false);
             }
         }
-        this.inAction = false;
-        currSelection = null;
-        HideHUD();
-    }
-
-    public void action1()
-    {
-        this.inAction = true;
-        currSelection.GetComponent<CharacterState>().Action1();
-    }
-
-
-
-    private void HideHUD()
-    {
-        actionButton1.gameObject.SetActive(false);
-        description.gameObject.SetActive(false);
     }
 }

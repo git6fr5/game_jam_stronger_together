@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // used only to store and information values about the character
-public abstract class CharacterState : MonoBehaviour
+public class CharacterState : MonoBehaviour
 {
     /* --- Debug --- */
     private string DebugTag = "[K2] {CharacterState}: ";
@@ -31,17 +31,17 @@ public abstract class CharacterState : MonoBehaviour
         if (DEBUG_init) { print(DebugTag + "Activated for " + gameObject.name); }
     }
 
-    public virtual void OnMouseDown()
+    void OnMouseDown()
     {
         Select();
     }
 
-    public virtual void OnMouseOver()
+    void OnMouseOver()
     {
         Highlight(true);
     }
 
-    public virtual void OnMouseExit()
+    void OnMouseExit()
     {
         Highlight(false);
     }
@@ -56,7 +56,7 @@ public abstract class CharacterState : MonoBehaviour
         }
     }
 
-    public virtual void Select()
+    public void Select()
     {
         // find HUD and activate the HUD inspect method on this object (assumes 1 exists in the scene)
         HUD hud = GameObject.FindGameObjectsWithTag("HUD")[0].GetComponent<HUD>();
@@ -75,24 +75,8 @@ public abstract class CharacterState : MonoBehaviour
         StartCoroutine(cameraFocus.Buffer(cameraFocus.bufferTime));
     }
 
-    public virtual void Deselect()
-    {
-        selected.enabled = false;
-        Highlight(false);
-
-        CameraFocus cameraFocus = GameObject.FindGameObjectsWithTag("MainCamera")[0].GetComponent<CameraFocus>();
-        cameraFocus.isBuffering = false;
-    }
-
     public void Highlight(bool isHover)
     {
         highlight.enabled = isHover;
     }
-
-    public virtual void Action1()
-    {
-        return;
-    }
-
-    public abstract void ShowHud(HUD hud);
 }
