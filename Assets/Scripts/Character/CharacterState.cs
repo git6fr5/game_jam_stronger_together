@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // used only to store and information values about the character
-public abstract class CharacterState : MonoBehaviour
+public class CharacterState : MonoBehaviour
 {
     /* --- Debug --- */
     private string DebugTag = "[K2] {CharacterState}: ";
@@ -94,5 +94,8 @@ public abstract class CharacterState : MonoBehaviour
         return;
     }
 
-    public abstract void ShowHud(HUD hud);
+    public virtual void ShowHud(HUD hud)
+    {
+        return;
+    }
 }
