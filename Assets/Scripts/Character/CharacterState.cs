@@ -115,8 +115,10 @@ public class CharacterState : MonoBehaviour
     void MoveFlag()
     {
         // Get the input from the player
+
         if (isControllable && isSelected)
         {
+            print("running move flag " + gameObject.name);
             characterMovement.horizontalMove = Input.GetAxisRaw("Horizontal");
             characterMovement.verticalMove = Input.GetAxisRaw("Vertical");
         }

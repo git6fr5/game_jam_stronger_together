@@ -15,16 +15,7 @@ public class SnowDigger : CharacterState
 
 
     string[] actions = new string[] { "Dig Snow", "Climb Rope" };
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    private void Update()
-    {
-
-    }
 
     public override void Action1()
     {

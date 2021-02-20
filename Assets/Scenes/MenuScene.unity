@@ -25917,7 +25917,7 @@ MonoBehaviour:
   body: {fileID: 1636976534}
   characterAnimation: {fileID: 1636976539}
   characterState: {fileID: 1636976538}
-  speed: 5
+  speed: 6
   horizontalMove: 0
   verticalMove: 0
 --- !u!1 &1673588827
@@ -27822,7 +27822,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.1
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -27875,7 +27875,7 @@ MonoBehaviour:
   body: {fileID: 1789256000}
   characterAnimation: {fileID: 1789256001}
   characterState: {fileID: 1789255996}
-  speed: 8
+  speed: 6
   horizontalMove: 0
   verticalMove: 0
 --- !u!1 &1879540108
