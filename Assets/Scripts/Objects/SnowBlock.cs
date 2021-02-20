@@ -7,13 +7,12 @@ public class SnowBlock : CharacterState
 {
 
     HUD hud;
-    SnowDigger snowDigger;
+    public bool hasRope = false;
     // Start is called before the first frame update
     void Start()
     {
         this.gameObject.tag = "SnowBlock";
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
-        snowDigger = GameObject.FindGameObjectWithTag("SnowDigger").GetComponent<SnowDigger>();
     }
 
 
@@ -22,12 +21,6 @@ public class SnowBlock : CharacterState
         if (!hud.inAction)
         {
             Select();
-        }
-
-        if (snowDigger.choosingDig)
-        {
-
-            snowDigger.Dig(this);
         }
     }
 
@@ -53,8 +46,14 @@ public class SnowBlock : CharacterState
     public override void ShowHud(HUD hud)
     {
 
-        hud.description.text = "This snow can be dug";
+        hud.description.text = "This block can be climbed";
         hud.description.gameObject.SetActive(true);
+    }
+
+    public void Rope()
+    {
+        this.hasRope = true;
+        this.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
     }
 
 }

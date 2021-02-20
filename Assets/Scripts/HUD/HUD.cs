@@ -20,6 +20,7 @@ public class HUD : MonoBehaviour
 
 
     public Button actionButton1;
+    public Button actionButton2;
 
     /* --- Internal Variables --- */
     [HideInInspector] public GameObject currSelection = null;
@@ -79,10 +80,17 @@ public class HUD : MonoBehaviour
         HideHUD();
     }
 
-    public void action1()
+    public void Action1()
     {
         this.inAction = true;
         currSelection.GetComponent<CharacterState>().Action1();
+    }
+
+
+    public void Action2()
+    {
+        this.inAction = true;
+        currSelection.GetComponent<CharacterState>().Action2();
     }
 
 
@@ -90,6 +98,7 @@ public class HUD : MonoBehaviour
     private void HideHUD()
     {
         actionButton1.gameObject.SetActive(false);
+        actionButton2.gameObject.SetActive(false);
         description.gameObject.SetActive(false);
     }
 }
