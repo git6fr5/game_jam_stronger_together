@@ -6,10 +6,14 @@ using UnityEngine;
 public class WorldRenderer : MonoBehaviour
 {
     /* --- Debug --- */
-    private string DebugTag = "[Entaku Island] {WorldRenderer}: ";
-    private bool DEBUG_init = false;
+    private string DebugTag = "[K2] {WorldRenderer}: ";
+    private bool DEBUG_init = true;
 
     /*--- Components ---*/
+
+
+    private static List<GameObject> characters = new List<GameObject>();
+    private static string[] sortTags = new string[] { "SnowBlock", "SnowDigger", "Climber" };
 
     /* --- Stats --- */
 
@@ -34,15 +38,24 @@ public class WorldRenderer : MonoBehaviour
     public static void MinimumSort()
     {
         // Declare the object array and the array of sorted characters
-        GameObject[] characters = GameObject.FindGameObjectsWithTag("Character");
+        characters = new List<GameObject>();
+
+        foreach (string _tag in sortTags)
+        {
+            GameObject[] _gameObjectArray = GameObject.FindGameObjectsWithTag(_tag);
+            foreach (GameObject _gameObject in _gameObjectArray)
+            {
+                characters.Add(_gameObject);
+            }
+        }
         List<CharacterState> characterStates = new List<CharacterState>();
         List<float> characterDepths = new List<float>();
 
         // There is no need to sort if there is less than two characters
-        if (characters.Length < 2) { return; }
+        if (characters.Count < 2) { return; }
 
         // Itterate through the rest of the list
-        for (int i = 0; i < characters.Length; i++)
+        for (int i = 0; i < characters.Count; i++)
         {
             CharacterState characterState = characters[i].GetComponent<CharacterState>();
             characterDepths.Add(characterState.depth);
@@ -50,7 +63,7 @@ public class WorldRenderer : MonoBehaviour
 
         while (characterDepths.Count > 0)
         {
-            for (int i = 0; i < characters.Length; i++)
+            for (int i = 0; i < characters.Count; i++)
             {
                 CharacterState characterState = characters[i].GetComponent<CharacterState>();
                 if (characterState.depth == characterDepths.Max())

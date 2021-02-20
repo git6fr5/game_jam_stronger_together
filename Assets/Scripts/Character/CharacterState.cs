@@ -41,6 +41,7 @@ public class CharacterState : MonoBehaviour
     {
         MoveFlag();
         depth = transform.position.y + hull.offset.y;
+        //print(depth);
     }
 
     public virtual void OnMouseDown()

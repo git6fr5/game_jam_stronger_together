@@ -25026,9 +25026,9 @@ GameObject:
   - component: {fileID: 1167380919}
   - component: {fileID: 1167380918}
   - component: {fileID: 1167380917}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SnowBlock
-  m_TagString: Untagged
+  m_TagString: SnowBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25070,8 +25070,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 748920069
-  m_SortingLayer: 4
+  m_SortingLayerID: 509560549
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 460e42cb79955404db250bee15de8e82, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -25167,6 +25167,7 @@ MonoBehaviour:
   currEnergy: 1
   isSelected: 0
   isDead: 0
+  depth: 0
 --- !u!50 &1167380917
 Rigidbody2D:
   serializedVersion: 4
@@ -25532,6 +25533,7 @@ GameObject:
   - component: {fileID: 1461341608}
   - component: {fileID: 1461341607}
   - component: {fileID: 1461341606}
+  - component: {fileID: 1461341609}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -25587,6 +25589,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1461341609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461341605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64692fd4ad2df55469c9614334b75b1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1597436141
 GameObject:
   m_ObjectHideFlags: 3
@@ -25691,7 +25705,7 @@ GameObject:
   - component: {fileID: 1636976540}
   - component: {fileID: 1636976539}
   - component: {fileID: 1636976534}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SnowDigger
   m_TagString: SnowDigger
   m_Icon: {fileID: 0}
@@ -25872,6 +25886,7 @@ MonoBehaviour:
   currEnergy: 1
   isSelected: 0
   isDead: 0
+  depth: 0
   choosingDig: 0
 --- !u!114 &1636976539
 MonoBehaviour:
@@ -27650,7 +27665,7 @@ GameObject:
   - component: {fileID: 1789256002}
   - component: {fileID: 1789256001}
   - component: {fileID: 1789256000}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Climber
   m_TagString: Climber
   m_Icon: {fileID: 0}
@@ -27723,6 +27738,7 @@ MonoBehaviour:
   currEnergy: 1
   isSelected: 0
   isDead: 0
+  depth: 0
 --- !u!212 &1789255997
 SpriteRenderer:
   m_ObjectHideFlags: 0
