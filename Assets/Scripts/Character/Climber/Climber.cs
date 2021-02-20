@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class Climber : CharacterState
 {
 
+    public const float FLYING_DRAIN_RATE = 1f;
+
     private bool isFlying = false;
     private bool ropeThrow = false;
     private SnowBlock snowBlock;
@@ -18,6 +20,7 @@ public class Climber : CharacterState
 
         GameObject[] snowBlocks = GameObject.FindGameObjectsWithTag("SnowBlock");
 
+        //enabled flyable walls
         foreach (GameObject i in snowBlocks)
         {
             bool hasRope = i.GetComponent<SnowBlock>().hasRope;
@@ -26,6 +29,18 @@ public class Climber : CharacterState
                 i.GetComponent<CapsuleCollider2D>().enabled = !isFlying;
             }
         }
+
+        //update oxygen drain rate
+        if (isFlying)
+        {
+            this.oxyDrainRate = FLYING_DRAIN_RATE;
+        }
+        else
+        {
+            base.DefaultOxyDrain();
+        }
+        print(this.oxyDrainRate);
+        print(this.oxy);
     }
 
 

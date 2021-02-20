@@ -22,6 +22,8 @@ public class CharacterState : MonoBehaviour
 
     public bool isControllable;
 
+    public GameObject healthBar;
+
     /* --- Internal Variables --- */
     [HideInInspector] public float maxEnergy = 1f;
     [HideInInspector] public float currEnergy = 1f;
@@ -31,6 +33,9 @@ public class CharacterState : MonoBehaviour
 
     [HideInInspector] public float depth = 0;
 
+    public float oxy = 100f;
+    public const float BASEOXYDRAIN = 0.2f;
+    [HideInInspector] public float oxyDrainRate = BASEOXYDRAIN;
     /*--- Unity Methods ---*/
     void Start()
     {
@@ -39,6 +44,13 @@ public class CharacterState : MonoBehaviour
 
     void Update()
     {
+        //update oxygyen level
+        this.oxy -= oxyDrainRate * Time.deltaTime;
+        if (healthBar != null)
+        {
+            healthBar.transform.localScale = new Vector3(oxy / 100f, 1f, 1f);
+        }
+
         MoveFlag();
         depth = transform.position.y + hull.offset.y;
         //print(depth);
@@ -131,5 +143,10 @@ public class CharacterState : MonoBehaviour
             characterMovement.horizontalMove = Input.GetAxisRaw("Horizontal");
             characterMovement.verticalMove = Input.GetAxisRaw("Vertical");
         }
+    }
+
+    public void DefaultOxyDrain()
+    {
+        this.oxyDrainRate = BASEOXYDRAIN;
     }
 }
