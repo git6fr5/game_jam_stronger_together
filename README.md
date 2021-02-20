@@ -11,9 +11,9 @@ Due Date : Sunday 21st February 2021
 
 ## Characters 
 
-Snow Digger => flamethrower guy who fights yetis
-Free Climber => jetpack dude who flies over hills
-Sherpa dude => healer, gives random wise quotes
+* Snow Digger => flamethrower guy who fights yetis
+* Free Climber => jetpack dude who flies over hills
+* Sherpa dude => healer, gives random wise quotes
 
 ## Objects and Level
 
