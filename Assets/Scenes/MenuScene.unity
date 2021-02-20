@@ -25169,11 +25169,8 @@ MonoBehaviour:
   currEnergy: 1
   isSelected: 0
   isDead: 0
-<<<<<<< HEAD
   depth: 0
-=======
   hasRope: 0
->>>>>>> ffe00feeb9321d86f255936a10aba09001beb10a
 --- !u!50 &1167380917
 Rigidbody2D:
   serializedVersion: 4
