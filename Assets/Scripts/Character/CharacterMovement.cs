@@ -29,7 +29,7 @@ public class CharacterMovement : MonoBehaviour
         if (DEBUG_init) { print(DebugTag + "Activated for " + gameObject.name); }
     }
 
-    void FixedUpdate()
+    public virtual void FixedUpdate()
     {
         Move();
     }
