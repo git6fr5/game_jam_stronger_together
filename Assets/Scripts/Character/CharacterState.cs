@@ -29,6 +29,8 @@ public class CharacterState : MonoBehaviour
     [HideInInspector] public bool isSelected = false;
     [HideInInspector] public bool isDead = false;
 
+    [HideInInspector] public float depth = 0;
+
     /*--- Unity Methods ---*/
     void Start()
     {
@@ -38,6 +40,7 @@ public class CharacterState : MonoBehaviour
     void Update()
     {
         MoveFlag();
+        depth = transform.position.y + hull.offset.y;
     }
 
     public virtual void OnMouseDown()
