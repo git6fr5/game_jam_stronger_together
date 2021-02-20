@@ -1,4 +1,4 @@
-# Brackey's Game Jam
+# Summit Fever (Brackey's Game Jam)
 
 Due Date : Sunday 21st February 2021 
 
@@ -7,6 +7,53 @@ Due Date : Sunday 21st February 2021
 - Visionary : Taha Akbarally 
 - TechLead : Asil Main
 - Chief Distraction Officer : Elston D'Souza 
+
+
+## Characters 
+
+Snow Digger => flamethrower guy who fights yetis
+Free Climber => jetpack dude who flies over hills
+Sherpa dude => healer, gives random wise quotes
+
+## Objects and Level
+
+Oxygen = health
+Map is a maze/puzzle
+Objects in the way are: hills, and yetis
+
+
+
+## Narrative 
+TODO 
+
+
+## TO DO list:
+
+#### Development:
+  - Prototype
+  - Narrative 
+  - Remove click to focus camera
+
+#### Artwork:
+  - Mountaineer Animations
+  - Yeti Animations
+  - Flamethrower Animations
+  - Jetpack Animations
+  - HUD items
+    - Oxygen bar
+    - Altitude bars
+
+#### Music & Sound Design 
+  - Gameplay Music 
+  - Success Music 
+  - Selection Noise
+  - Moving Noise
+  - Yeti Hurt noise
+  - Flame thrower noise
+  - Climbing Noise
+  - Ice Monster Avatar
+  - Mountaineer Moving animation
+
 
 ## Planning Documentation 
 
@@ -26,6 +73,7 @@ Due Date : Sunday 21st February 2021
 - [Main Theme](https://open.spotify.com/track/2gsXmYX7AVEPZHiClEsaQw?si=uVdkl8T7RR6vaPo5QehW6A)
 - [Intro Section](https://open.spotify.com/track/2Vy3oYEpGJfy5WppbAPHgH?si=Zl__f0X7RYyd-zvrsPZFJg)
 - [Intense Music](https://www.youtube.com/watch?v=5At9WgxCJJg)
+
 
 
 
