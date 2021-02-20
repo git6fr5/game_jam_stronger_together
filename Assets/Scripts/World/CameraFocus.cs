@@ -37,8 +37,8 @@ public class CameraFocus : MonoBehaviour
             emptyFocus.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Focus(emptyFocus);
 
-            //HUD hud = GameObject.FindGameObjectsWithTag("HUD")[0].GetComponent<HUD>();
-            //hud.Inspect(null);
+            HUD hud = GameObject.FindGameObjectsWithTag("HUD")[0].GetComponent<HUD>();
+            hud.Inspect(null);
         }
 
         /*if (!isBuffering)
