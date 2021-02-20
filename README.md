@@ -26,6 +26,9 @@ Objects in the way are: hills, and yetis
 ## Narrative 
 TODO 
 
+## Prototype 
+![Prototype](https://cdn.discordapp.com/attachments/629990164642660353/812508365624180746/Notes_210220_131724.jpg)
+
 
 ## TO DO list:
 
