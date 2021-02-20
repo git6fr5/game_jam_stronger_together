@@ -25169,7 +25169,11 @@ MonoBehaviour:
   currEnergy: 1
   isSelected: 0
   isDead: 0
+<<<<<<< HEAD
   depth: 0
+=======
+  hasRope: 0
+>>>>>>> ffe00feeb9321d86f255936a10aba09001beb10a
 --- !u!50 &1167380917
 Rigidbody2D:
   serializedVersion: 4
@@ -25628,7 +25632,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417127676}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.33, y: 2.14, z: -7.461385}
+  m_LocalPosition: {x: 0.52, y: 1.67, z: -7.461385}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1167380913}
