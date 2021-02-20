@@ -58,6 +58,7 @@ public class SnowDigger : CharacterState
         this.choosingDig = false;
         blockToDig = null;
         nextPos = this.gameObject.transform.position;
+        base.Deselect();
 
     }
 }
