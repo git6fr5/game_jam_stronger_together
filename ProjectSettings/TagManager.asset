@@ -9,6 +9,7 @@ TagManager:
   - SnowBlock
   - SnowDigger
   - Climber
+  - RopeThrow
   layers:
   - Default
   - TransparentFX

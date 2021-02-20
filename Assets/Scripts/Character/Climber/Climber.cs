@@ -6,18 +6,57 @@ using UnityEngine.UI;
 public class Climber : CharacterState
 {
 
+    private bool isFlying = false;
+    private bool ropeThrow = false;
+    private SnowBlock snowBlock;
 
-    string[] actions = new string[] { "Free Climb", "Throw Rope" };
+    string[] actions = new string[] { "Fly", "Throw Rope" };
 
-    // Start is called before the first frame update
-    void Start()
+    public override void Action1()
     {
+        isFlying = !isFlying;
+
+        GameObject[] snowBlocks = GameObject.FindGameObjectsWithTag("SnowBlock");
+
+        foreach (GameObject i in snowBlocks)
+        {
+            bool hasRope = i.GetComponent<SnowBlock>().hasRope;
+            if (!hasRope)
+            {
+                i.GetComponent<CapsuleCollider2D>().enabled = !isFlying;
+            }
+        }
+    }
+
+
+
+    public override void Action2()
+    {
+        if (ropeThrow && !snowBlock.hasRope)
+        {
+            //throw rope animation
+            snowBlock.Rope();
+        }
+
+        print(ropeThrow.ToString());
         
     }
 
-    public new void Action1()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("RopeThrow"))
+        {
+            this.ropeThrow = true;
+            this.snowBlock = collision.gameObject.GetComponentInParent<SnowBlock>();
+        }
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("RopeThrow"))
+        {
+            this.ropeThrow = false;
+        }
     }
 
 
@@ -25,5 +64,8 @@ public class Climber : CharacterState
     {
         hud.actionButton1.GetComponentInChildren<Text>().text = this.actions[0];
         hud.actionButton1.gameObject.SetActive(true);
+        hud.actionButton2.gameObject.SetActive(true);
     }
+
+
 }

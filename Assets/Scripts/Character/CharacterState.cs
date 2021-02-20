@@ -107,6 +107,11 @@ public class CharacterState : MonoBehaviour
         return;
     }
 
+    public virtual void Action2()
+    {
+        return;
+    }
+
     public virtual void ShowHud(HUD hud)
     {
         return;
@@ -118,7 +123,7 @@ public class CharacterState : MonoBehaviour
 
         if (isControllable && isSelected)
         {
-            print("running move flag " + gameObject.name);
+            //print("running move flag " + gameObject.name);
             characterMovement.horizontalMove = Input.GetAxisRaw("Horizontal");
             characterMovement.verticalMove = Input.GetAxisRaw("Vertical");
         }
