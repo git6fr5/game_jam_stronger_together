@@ -40,16 +40,6 @@ public class SnowBlock : CharacterState
         }
     }
 
-
-
-
-    public override void ShowHud(HUD hud)
-    {
-
-        hud.description.text = "This block can be climbed";
-        hud.description.gameObject.SetActive(true);
-    }
-
     public void Rope()
     {
         this.hasRope = true;

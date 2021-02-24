@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HUDGameOver : MonoBehaviour
+public class HUDCharacters : MonoBehaviour
 {
     /* --- Debug --- */
-    private string DebugTag = "[Entaku Island] {HUDGameOver}: ";
+    private string DebugTag = "[SUMMIT FEVER] {HUDCharacters}: ";
     private bool DEBUG_init = false;
 
     /* --- Components --- */
-    public Text scoreText;
-    public Text timerText;
+
+
+    /* --- Internal Variables --- */
 
     /*--- Unity Methods ---*/
     void Start()
     {
         if (DEBUG_init) { print(DebugTag + "Activated"); }
-        scoreText.text = "Score: " + timerText.text;
     }
+
+    /*--- Methods ---*/
+
 }

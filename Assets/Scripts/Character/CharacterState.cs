@@ -34,8 +34,9 @@ public class CharacterState : MonoBehaviour
     [HideInInspector] public float depth = 0;
 
     public float oxy = 100f;
-    public const float BASEOXYDRAIN = 0.2f;
-    [HideInInspector] public float oxyDrainRate = BASEOXYDRAIN;
+    public static float BASE_DRAIN_RATE = 0.2f;
+    [HideInInspector] public float oxyDrainRate = BASE_DRAIN_RATE;
+
     /*--- Unity Methods ---*/
     void Start()
     {
@@ -44,16 +45,12 @@ public class CharacterState : MonoBehaviour
 
     void Update()
     {
-        //update oxygyen level
-        this.oxy -= oxyDrainRate * Time.deltaTime;
-        if (healthBar != null)
-        {
-            healthBar.transform.localScale = new Vector3(oxy / 100f, 1f, 1f);
-        }
-
         MoveFlag();
-        depth = transform.position.y + hull.offset.y;
-        //print(depth);
+    }
+
+    void FixedUpdate()
+    {
+        OxyDrain();
     }
 
     public virtual void OnMouseDown()
@@ -72,50 +69,53 @@ public class CharacterState : MonoBehaviour
     }
 
     /*--- Methods ---*/
-    public void UseEnergy(float energy)
-    {
-        currEnergy = currEnergy - energy;
-        if (currEnergy < 0)
-        {
-            isDead = true;
-        }
-    }
-
     public virtual void Select()
     {
         // find HUD and activate the HUD inspect method on this object (assumes 1 exists in the scene)
         HUD hud = GameObject.FindGameObjectsWithTag("HUD")[0].GetComponent<HUD>();
-        hud.Inspect(this);
-
-        // finds the Camera and sets its focus to this (assumes 1 exists in the scene)
-        CameraFocus cameraFocus = GameObject.FindGameObjectsWithTag("MainCamera")[0].GetComponent<CameraFocus>();
-        if (!cameraFocus.isBuffering)
-        {
-            cameraFocus.Focus(transform);
-        }
-
-        selected.enabled = true;
-
-        cameraFocus.isBuffering = true;
-        StartCoroutine(cameraFocus.Buffer(cameraFocus.bufferTime));
-
-        isSelected = true;
-    }
-
-    public virtual void Deselect()
-    {
-        selected.enabled = false;
-        Highlight(false);
-
-        CameraFocus cameraFocus = GameObject.FindGameObjectsWithTag("MainCamera")[0].GetComponent<CameraFocus>();
-        cameraFocus.isBuffering = false;
-
-        isSelected = false;
+        hud.Select(this);
     }
 
     public void Highlight(bool isHover)
     {
         highlight.enabled = isHover;
+    }
+
+    void MoveFlag()
+    {
+        // Get the input from the player
+        if (isControllable && isSelected)
+        {
+            characterMovement.horizontalMove = Input.GetAxisRaw("Horizontal");
+            characterMovement.verticalMove = Input.GetAxisRaw("Vertical");
+        }
+
+        if (hull) { depth = transform.position.y + hull.offset.y; }
+    }
+
+    public void SetOxyDrain(float drainRate)
+    {
+        if (drainRate < 0)
+        {
+            oxyDrainRate = BASE_DRAIN_RATE;
+            return;
+        }
+        oxyDrainRate = drainRate;
+    }
+
+    void OxyDrain()
+    {
+        oxy -= oxyDrainRate * Time.fixedDeltaTime;
+        if (oxy < 0)
+        {
+            oxy = 0;
+            isDead = true;
+        }
+    }
+
+    public virtual void Action()
+    {
+        // mostly action 1, but sometimes might be action 2
     }
 
     public virtual void Action1()
@@ -126,27 +126,5 @@ public class CharacterState : MonoBehaviour
     public virtual void Action2()
     {
         return;
-    }
-
-    public virtual void ShowHud(HUD hud)
-    {
-        return;
-    }
-
-    void MoveFlag()
-    {
-        // Get the input from the player
-
-        if (isControllable && isSelected)
-        {
-            //print("running move flag " + gameObject.name);
-            characterMovement.horizontalMove = Input.GetAxisRaw("Horizontal");
-            characterMovement.verticalMove = Input.GetAxisRaw("Vertical");
-        }
-    }
-
-    public void DefaultOxyDrain()
-    {
-        this.oxyDrainRate = BASEOXYDRAIN;
     }
 }

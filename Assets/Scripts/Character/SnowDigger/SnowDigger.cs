@@ -7,12 +7,9 @@ public class SnowDigger : CharacterState
 {
 
     private Vector2 nextPos;
-    private SnowBlock blockToDig;
+    //private SnowBlock blockToDig;
 
     [HideInInspector] public bool choosingDig = false;
-
-
-
 
     string[] actions = new string[] { "Dig Snow", "Climb Rope" };
 
@@ -28,12 +25,6 @@ public class SnowDigger : CharacterState
         choosingDig = true;
     }
 
-    public override void ShowHud(HUD hud)
-    {
-        hud.actionButton1.GetComponentInChildren<Text>().text = this.actions[0];
-        hud.actionButton1.gameObject.SetActive(true);
-    }
-
     public void Dig(SnowBlock block)
     {
         this.choosingDig = false;
@@ -44,12 +35,12 @@ public class SnowDigger : CharacterState
 
     }
 
-    public override void Deselect()
+    /*public override void Deselect()
     {
         this.choosingDig = false;
-        blockToDig = null;
+        //blockToDig = null;
         nextPos = this.gameObject.transform.position;
         base.Deselect();
 
-    }
+    }*/
 }

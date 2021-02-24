@@ -8,7 +8,7 @@ public class Climber : CharacterState
 
     public const float FLYING_DRAIN_RATE = 1f;
 
-    private bool isFlying = false;
+    [HideInInspector] public bool isFlying = false;
     private bool ropeThrow = false;
     private SnowBlock snowBlock;
 
@@ -33,17 +33,21 @@ public class Climber : CharacterState
         //update oxygen drain rate
         if (isFlying)
         {
-            this.oxyDrainRate = FLYING_DRAIN_RATE;
+            SetOxyDrain(FLYING_DRAIN_RATE);
         }
         else
         {
-            base.DefaultOxyDrain();
+            SetOxyDrain(BASE_DRAIN_RATE);
         }
-        print(this.oxyDrainRate);
-        print(this.oxy);
     }
 
-
+    public void LateUpdate()
+    {
+        if (isFlying)
+        {
+            spriteRenderer.sortingOrder = 500;
+        }
+    }
 
     public override void Action2()
     {
@@ -73,14 +77,4 @@ public class Climber : CharacterState
             this.ropeThrow = false;
         }
     }
-
-
-    public override void ShowHud(HUD hud)
-    {
-        hud.actionButton1.GetComponentInChildren<Text>().text = this.actions[0];
-        hud.actionButton1.gameObject.SetActive(true);
-        hud.actionButton2.gameObject.SetActive(true);
-    }
-
-
 }
