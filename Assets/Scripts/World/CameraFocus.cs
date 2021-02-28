@@ -12,14 +12,8 @@ public class CameraFocus : MonoBehaviour
 
     /*--- Components ---*/
     public CinemachineVirtualCamera virtualCamera;
-    public Transform emptyFocus;
-
 
     /*--- Internal Variables ---*/
-    [HideInInspector] public float bufferTime = 0.1f;
-    [HideInInspector] public bool isBuffering = false;
-    private const float Speed = 0.0075f;
-
 
     /*--- Unity Methods ---*/
     void Start()
@@ -31,18 +25,7 @@ public class CameraFocus : MonoBehaviour
     public void Focus(Transform _focus)
     {
         virtualCamera.m_Follow = _focus;
-        isBuffering = true;
-        StartCoroutine(Buffer(bufferTime));
-    }
-
-    // so that there is some buffer time to control for misclicks
-    public IEnumerator Buffer(float elapsedTime)
-    {
-        yield return new WaitForSeconds(elapsedTime);
-
-        isBuffering = false;
-
-        yield return null;
+        virtualCamera.m_LookAt = _focus;
 
     }
 }

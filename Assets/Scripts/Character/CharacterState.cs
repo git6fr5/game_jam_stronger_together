@@ -33,8 +33,10 @@ public class CharacterState : MonoBehaviour
 
     [HideInInspector] public float depth = 0;
 
-    public float oxy = 100f;
-    public static float BASE_DRAIN_RATE = 0.2f;
+    [HideInInspector] public static float BASE_DRAIN_RATE = 0.2f;
+    [HideInInspector] public static float MAX_OXY = 100f;
+
+    [HideInInspector] public float oxy = MAX_OXY;
     [HideInInspector] public float oxyDrainRate = BASE_DRAIN_RATE;
 
     /*--- Unity Methods ---*/
@@ -106,7 +108,8 @@ public class CharacterState : MonoBehaviour
     void OxyDrain()
     {
         oxy -= oxyDrainRate * Time.fixedDeltaTime;
-        if (oxy < 0)
+        if (oxy > MAX_OXY) { oxy = MAX_OXY; }
+        else if (oxy < 0)
         {
             oxy = 0;
             isDead = true;
@@ -116,6 +119,8 @@ public class CharacterState : MonoBehaviour
     public virtual void Action()
     {
         // mostly action 1, but sometimes might be action 2
+        Debug.Log(DebugTag + "Action");
+        SetOxyDrain(oxyDrainRate + 5.0f);
     }
 
     public virtual void Action1()

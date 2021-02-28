@@ -11,10 +11,13 @@ public class HUD : MonoBehaviour
     private bool DEBUG_init = false;
 
     /*--- Components ---*/
-    public HUDActionButton hudActionButton;
     public HUDRadialHealthBar hudRadialHealthBar;
     public HUDAltitudeBar hudAltitudeBar;
     public CharacterState[] hudCharacters;
+    public Button hudActionButton;
+    public Slider[] hudHealthBars;
+    public Button hudPauseButton;
+    public GameObject hudPauseMenu;
 
     /* --- Internal Variables --- */
     [HideInInspector] public CharacterState currSelection = null;
@@ -24,6 +27,8 @@ public class HUD : MonoBehaviour
     void Start()
     {
         if (DEBUG_init) { print(DebugTag + "Activated"); }
+        SetSelectorHealth();
+        Select(hudCharacters[0]);
     }
 
     void Update()
@@ -32,8 +37,9 @@ public class HUD : MonoBehaviour
         {
             SelectNext();
         }
-        if (currSelection) { print(currSelection.name); }
         Altitude();
+        SelectorHealth();
+        RadialHealth();
     }
 
     /* --- Methods ---*/
@@ -48,14 +54,8 @@ public class HUD : MonoBehaviour
 
             // finds the Camera and sets its focus to this (assumes 1 exists in the scene)
             CameraFocus cameraFocus = GameObject.FindGameObjectsWithTag("MainCamera")[0].GetComponent<CameraFocus>();
-            if (!cameraFocus.isBuffering)
-            {
-                print("hello");
-                cameraFocus.Focus(transform);
-            }
+            cameraFocus.Focus(currSelection.transform);
 
-            cameraFocus.isBuffering = true;
-            StartCoroutine(cameraFocus.Buffer(cameraFocus.bufferTime));
         }
     }
 
@@ -64,7 +64,7 @@ public class HUD : MonoBehaviour
         int index = 0;
         for (int i = 0; i < hudCharacters.Length; i++)
         {
-            if (hudCharacters[i].gameObject == currSelection)
+            if (hudCharacters[i] == currSelection)
             {
                 index = (i + 1) % hudCharacters.Length;
             }
@@ -84,7 +84,6 @@ public class HUD : MonoBehaviour
         inAction = false;
     }
 
-
     public void Action()
     {
         inAction = true;
@@ -96,6 +95,44 @@ public class HUD : MonoBehaviour
         if (currSelection)
         {
             hudAltitudeBar.altitude = currSelection.depth;
+        }
+    }
+
+    void SetSelectorHealth()
+    {
+        // assumes there are atleast as many characters as health bars
+        // can be more characters than health bars though
+        for (int i = 0; i < hudHealthBars.Length; i++)
+        {
+            hudHealthBars[i].maxValue = CharacterState.MAX_OXY;
+            hudHealthBars[i].value = hudCharacters[i].oxy;
+        }
+    }
+
+    void SelectorHealth()
+    {
+        // assumes there are atleast as many characters as health bars
+        // can be more characters than health bars though
+        for (int i = 0; i < hudHealthBars.Length; i++) 
+        {
+            hudHealthBars[i].value = hudCharacters[i].oxy;
+        }
+    }
+
+    void RadialHealth()
+    {
+
+    }
+
+    public void Pause()
+    {
+        if (!hudPauseMenu.activeSelf)
+        {
+            hudPauseMenu.SetActive(true);
+        }
+        else
+        {
+            hudPauseMenu.SetActive(false);
         }
     }
 }

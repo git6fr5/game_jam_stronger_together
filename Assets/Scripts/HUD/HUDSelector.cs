@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class HUDActionButton : MonoBehaviour
+public class HUDSelector : MonoBehaviour
 {
     /* --- Debug --- */
-    private string DebugTag = "[SUMMIT FEVER] {HUDActionButton}: ";
+    private string DebugTag = "[SUMMIT FEVER] {HUDSelector}: ";
     private bool DEBUG_init = false;
 
     /* --- Components --- */
@@ -23,3 +22,4 @@ public class HUDActionButton : MonoBehaviour
     /*--- Methods ---*/
 
 }
+

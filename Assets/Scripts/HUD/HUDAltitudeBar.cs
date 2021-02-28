@@ -10,10 +10,12 @@ public class HUDAltitudeBar : MonoBehaviour
     private bool DEBUG_init = false;
 
     /* --- Components --- */
+    public RectTransform altitudeBar;
+    public RectTransform altitudeIndicator;
 
     /* --- Internal Variables --- */
     [HideInInspector] public float altitude;
-    private float maxAltitude = 1000f;
+    private float maxAltitude = 100f;
 
     /*--- Unity Methods ---*/
     void Start()
@@ -26,7 +28,12 @@ public class HUDAltitudeBar : MonoBehaviour
 
     void Update()
     {
-        print("Altitude: " + altitude.ToString());
+        //Debug.Log(DebugTag + "Altitude: " + altitude.ToString());
+
+        if (altitude < 0) { altitude = 0; }
+
+        float altitudeScaled = altitude / maxAltitude * altitudeBar.rect.height;
+        altitudeIndicator.anchoredPosition = new Vector2( 0, altitudeScaled);
     }
 
 }
