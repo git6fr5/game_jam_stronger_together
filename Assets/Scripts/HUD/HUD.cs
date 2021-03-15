@@ -14,6 +14,7 @@ public class HUD : MonoBehaviour
     public HUDRadialHealthBar hudRadialHealthBar;
     public HUDAltitudeBar hudAltitudeBar;
     public CharacterState[] hudCharacters;
+    public Slider hudActionBar;
     public Button hudActionButton;
     public Slider[] hudHealthBars;
     public Button hudPauseButton;
@@ -22,12 +23,13 @@ public class HUD : MonoBehaviour
     /* --- Internal Variables --- */
     [HideInInspector] public CharacterState currSelection = null;
     [HideInInspector] public bool inAction = false;
+    private bool isPaused = false;
 
     /*--- Unity Methods ---*/
     void Start()
     {
         if (DEBUG_init) { print(DebugTag + "Activated"); }
-        SetSelectorHealth();
+        InitHealth();
         Select(hudCharacters[0]);
     }
 
@@ -37,14 +39,15 @@ public class HUD : MonoBehaviour
         {
             SelectNext();
         }
-        Altitude();
-        SelectorHealth();
-        RadialHealth();
+        UpdateAltitude();
+        UpdateHealth();
     }
 
     /* --- Methods ---*/
     public void Select(CharacterState characterState)
     {
+        if (isPaused) { return; }
+
         Deselect();
         if (characterState) 
         { 
@@ -61,6 +64,8 @@ public class HUD : MonoBehaviour
 
     void SelectNext()
     {
+        if (isPaused) { return; }
+
         int index = 0;
         for (int i = 0; i < hudCharacters.Length; i++)
         {
@@ -86,11 +91,13 @@ public class HUD : MonoBehaviour
 
     public void Action()
     {
+        if (isPaused) { return; }
+
         inAction = true;
         currSelection.Action();
     }
 
-    void Altitude()
+    void UpdateAltitude()
     {
         if (currSelection)
         {
@@ -98,18 +105,18 @@ public class HUD : MonoBehaviour
         }
     }
 
-    void SetSelectorHealth()
+    void InitHealth()
     {
         // assumes there are atleast as many characters as health bars
         // can be more characters than health bars though
         for (int i = 0; i < hudHealthBars.Length; i++)
         {
             hudHealthBars[i].maxValue = CharacterState.MAX_OXY;
-            hudHealthBars[i].value = hudCharacters[i].oxy;
         }
+        hudActionBar.maxValue = CharacterState.MAX_OXY;
     }
 
-    void SelectorHealth()
+    void UpdateHealth()
     {
         // assumes there are atleast as many characters as health bars
         // can be more characters than health bars though
@@ -117,11 +124,8 @@ public class HUD : MonoBehaviour
         {
             hudHealthBars[i].value = hudCharacters[i].oxy;
         }
-    }
-
-    void RadialHealth()
-    {
-
+        if (currSelection) { hudActionBar.value = currSelection.oxy; }
+        else { hudActionBar.value = 0f; }
     }
 
     public void Pause()
@@ -129,10 +133,14 @@ public class HUD : MonoBehaviour
         if (!hudPauseMenu.activeSelf)
         {
             hudPauseMenu.SetActive(true);
+            isPaused = true;
+            Time.timeScale = 0;
         }
         else
         {
             hudPauseMenu.SetActive(false);
+            isPaused = false;
+            Time.timeScale = 1;
         }
     }
 }
